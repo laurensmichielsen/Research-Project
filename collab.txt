@@ -1,0 +1,33 @@
+from google.colab import drive
+drive.mount('/content/drive')
+
+import zipfile
+import os
+
+# Path to the zip file in Google Drive
+zip_file_path = '/content/drive/My Drive/Research.zip'
+
+# Path to the directory where you want to extract the contents
+extract_path = '/content/experiment/'
+
+# Create the directory if it doesn't exist
+os.makedirs(extract_path, exist_ok=True)
+
+# Unzip the file
+with zipfile.ZipFile(zip_file_path, 'r') as zip_ref:
+    zip_ref.extractall(extract_path)
+
+import shutil
+import os
+
+folder_to_zip = "/content/experiment/Research"
+folder_to_store_zip = "/content/drive/MyDrive/"
+
+# Get the base name of the folder to zip
+folder_name = os.path.basename(folder_to_zip)
+
+# Define the path where the zip file will be saved
+zip_file_path = os.path.join(folder_to_store_zip, "Research2")
+
+# Create a zip file containing the entire folder
+shutil.make_archive(zip_file_path, 'zip', folder_to_zip)

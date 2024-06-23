@@ -33,6 +33,12 @@ datasets
 │   │-- noise
 ```
 Collect all the images and labels and make sure they are in YOLO format.
+4. Get the right data split by checking the files in the `datasplits` folder.
 5. Run the experiments by running the files found in the experiments folder. You can change the datasets and noise types by changing the variables in the files.
 6. The results will be saved in the results folder.
 
+## Results
+The results of the experiments are saved in the results folder. The results are saved in txt format and can be visualized using the files in the plot utils and subfolders.
+
+## Statistics
+Can be found in the statistics folder in the noise_generation folder.
