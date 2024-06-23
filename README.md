@@ -7,38 +7,41 @@ The experiments were conducted on three datasets: PASCAL VOC 2012, VisDrone, and
 ## Reproducing the Experiments
 To reproduce the experiments, follow the steps below:
 1. Clone the repository
-2. Download the datasets from the following links:
+```
+git clone https://github.com/laurensmichielsen/Research-Project.git
+``` 
+2. Install the required packages by running the following command:
+```
+pip install -r requirements.txt
+```
+3. Download the datasets from the following links:
     - [PASCAL VOC 2012](http://host.robots.ox.ac.uk/pascal/VOC/voc2012/)
     - [VisDrone](https://github.com/VisDrone/VisDrone-Dataset)
     - [Brain-Tumor](https://docs.ultralytics.com/datasets/detect/brain-tumor/)
 
-3. Create a folder named `datasets` in the root directory of the repository and make three subfolders named `PASCAL_VOC_2012`, `VisDrone`, and `Brain_Tumor`.
-4. For each dataset create the following structure
-```
-datasets
-│-- PASCAL_VOC_2012
-│   │-- AllLabels
-│   │-- AllImages
-│   │-- images
-│   │---- train
-│   │---- val
-│   │---- test
-│   │-- labels
-│   │---- train
-│   │---- val
-│   │---- test
-│   │-- noise1
-│   │---- labels
-│   │---- images
-│   │-- noise
-```
-Collect all the images and labels and make sure they are in YOLO format.
-4. Get the right data split by checking the files in the `datasplits` folder.
-5. Run the experiments by running the files found in the experiments folder. You can change the datasets and noise types by changing the variables in the files.
-6. The results will be saved in the results folder.
+3. Create a folder named `datasets` in the root directory of the repository and make three subfolders named `PASCAL_VOC_2012`, `VisDrone`, and `Brain_Tumor`. Ensure that the annotations are in YOLO format since these are required for the noise generation scripts
 
-## Results
-The results of the experiments are saved in the results folder. The results are saved in txt format and can be visualized using the files in the plot utils and subfolders.
+4. For each dataset, create the following structure
+```
+dataset
+│
+└───AllImages
+|___AllLabels
+|___images
+|    |___train
+|    |___val
+|    |___test
+|___labels
+|    |___train
+|     |___val
+|     |___test
+|___noise1
+|   |___images
+|   |___labels
+|___noise
+```
+5. Ensure you have to correct data split for the Experiment you wish to reproduce. The `data-splits` folder contains the splits used in the experiments. The splits are in txt format and contain the image names of the train, validation, and test sets without the image suffix. The Faster R-CNN, VisDrone, and Brain-Tumor experiments all used the same subset and therefore there is only one file in their respective subfolders
 
-## Statistics
-Can be found in the statistics folder in the noise_generation folder.
+    a. You can also create custom splits by collecting all the images and labels and using the split.py file in the main folder. This will create a train, validation, and test split in the datasets.
+
+6. Run the experiment script of the architecture you want to use from the `experiments` folder. Update imports and file paths as needed. The script will run the experiments and save the results in the results folder.
